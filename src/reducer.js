@@ -10,6 +10,9 @@ const reducer = (state, action) => {
   switch (action.type) {
     case SET_LOADING:
       return { ...state, isLoading: true };
+    case SET_STORIES:
+      const { hits, nbPages } = action.payload;
+      return { ...state, isLoading: false, hits, nbPages };
     default:
       throw new Error("Invalid action type: " + action.type);
   }

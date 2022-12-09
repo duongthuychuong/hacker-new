@@ -13,6 +13,11 @@ const reducer = (state, action) => {
     case SET_STORIES:
       const { hits, nbPages } = action.payload;
       return { ...state, isLoading: false, hits, nbPages };
+    case REMOVE_STORY:
+      const newHits = state.hits.filter(
+        (story) => story.objectID !== action.payload
+      );
+      return { ...state, hits: newHits };
     default:
       throw new Error("Invalid action type: " + action.type);
   }

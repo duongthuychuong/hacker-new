@@ -20,6 +20,21 @@ const reducer = (state, action) => {
       return { ...state, hits: newHits };
     case HANDLE_SEARCH:
       return { ...state, query: action.payload, page: 0 };
+    case HANDLE_PAGE:
+      let newPage;
+      if (action.payload === "decrease") {
+        newPage = state.page - 1;
+        if (newPage < 0) {
+          newPage = 0;
+        }
+        return { ...state, page: newPage };
+      } else {
+        newPage = state.page + 1;
+        if (newPage > state.nbPages - 1) {
+          newPage = state.nbPages - 1;
+        }
+        return { ...state, page: newPage };
+      }
     default:
       throw new Error("Invalid action type: " + action.type);
   }

@@ -15,7 +15,7 @@ const initialState = {
   isLoading: true,
   hits: [],
   query: "react",
-  page: 0,
+  page: 49,
   nbPages: 0,
 };
 
@@ -42,11 +42,16 @@ const AppProvider = ({ children }) => {
   const handleSearch = (query) => {
     dispatch({ type: HANDLE_SEARCH, payload: query });
   };
+  const handlePage = (value) => {
+    dispatch({ type: HANDLE_PAGE, payload: value });
+  };
   const removeStory = (id) => {
     dispatch({ type: REMOVE_STORY, payload: id });
   };
   return (
-    <AppContext.Provider value={{ ...state, removeStory, handleSearch }}>
+    <AppContext.Provider
+      value={{ ...state, removeStory, handleSearch, handlePage }}
+    >
       {children}
     </AppContext.Provider>
   );
